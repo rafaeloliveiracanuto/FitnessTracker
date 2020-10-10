@@ -1,6 +1,7 @@
 package com.example.fitnesstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class ImcActivity extends AppCompatActivity {
