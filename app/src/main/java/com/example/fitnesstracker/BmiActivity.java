@@ -4,6 +4,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,10 +36,11 @@ public class BmiActivity extends AppCompatActivity {
                 String sHeight = editHeight.getText().toString();
                 String sWeight = editWeight.getText().toString();
 
-                int height = Integer.parseInt(sHeight);
-                int weight = Integer.parseInt(sWeight);
+                double height = Double.parseDouble(sHeight);
+                double weight = Double.parseDouble(sWeight);
 
                 double result = calculateBMI(height, weight);
+                Log.d("Testing", String.valueOf(result));
 
                 int bmiResponseId = bmiResponse(result);
 
@@ -77,7 +79,7 @@ public class BmiActivity extends AppCompatActivity {
                 && !editWeight.getText().toString().isEmpty());
     }
 
-    private double calculateBMI(int height, int weight) {
-        return weight / ( ((double) height / 100) ) * ( ((double) height / 100) );
+    private double calculateBMI(double height, double weight) {
+        return weight / ((height / 100) * (height / 100));
     }
 }
