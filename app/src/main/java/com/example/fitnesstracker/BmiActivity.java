@@ -1,5 +1,6 @@
 package com.example.fitnesstracker;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -39,7 +40,9 @@ public class BmiActivity extends AppCompatActivity {
 
                 double result = calculateBMI(height, weight);
 
+                int bmiResponseId = bmiResponse(result);
 
+                Toast.makeText(BmiActivity.this, bmiResponseId, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -47,8 +50,24 @@ public class BmiActivity extends AppCompatActivity {
 
     }
 
+    @StringRes
     private int bmiResponse(double bmi) {
-
+        if (bmi < 15)
+            return R.string.bmi_severely_low_weight;
+        else if (bmi < 16)
+            return R.string.bmi_very_low_weight;
+        else if (bmi < 18.5)
+            return R.string.bmi_low_weight;
+        else if (bmi < 25)
+            return R.string.normal;
+        else if (bmi < 30)
+            return R.string.bmi_high_weight;
+        else if (bmi < 35)
+            return R.string.bmi_so_high_weight;
+        else if (bmi < 40)
+            return R.string.bmi_severely_high_weight;
+        else
+            return R.string.bmi_extreme_weight;
     }
 
     private boolean validate() {
