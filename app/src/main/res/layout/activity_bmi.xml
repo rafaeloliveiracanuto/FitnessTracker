@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#0f0"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ImcActivity">
-    
-    <TextView
-        android:layout_width=""
-        android:layout_height=""
+    android:layout_height="match_parent">
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".BmiActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/bmi_description" />
+
+        <EditText
+            android:id="@+id/editText_bmi_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="40dp"
+            android:hint="@string/weight"
+            android:inputType="number"
+            android:maxLength="3" />
+
+        <EditText
+            android:id="@+id/editText_bmi_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="40dp"
+            android:hint="@string/height"
+            android:inputType="number"
+            android:maxLength="3" />
+
+        <Button
+            android:id="@+id/button_bmi_send"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@android:color/holo_red_dark"
+            android:padding="10dp"
+            android:text="@string/calculate"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</ScrollView>
