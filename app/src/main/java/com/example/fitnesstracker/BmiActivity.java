@@ -1,11 +1,15 @@
 package com.example.fitnesstracker;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,27 +29,37 @@ public class BmiActivity extends AppCompatActivity {
         editHeight = findViewById(R.id.editText_bmi_height);
         buttonSend = findViewById(R.id.button_bmi_send);
 
-        buttonSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!validate()) {
-                    Toast.makeText(BmiActivity.this, R.string.fields_errors, Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                String sHeight = editHeight.getText().toString();
-                String sWeight = editWeight.getText().toString();
-
-                double height = Double.parseDouble(sHeight);
-                double weight = Double.parseDouble(sWeight);
-
-                double result = calculateBMI(height, weight);
-                Log.d("Testing", String.valueOf(result));
-
-                int bmiResponseId = bmiResponse(result);
-
-                Toast.makeText(BmiActivity.this, bmiResponseId, Toast.LENGTH_SHORT).show();
+        buttonSend.setOnClickListener(v -> {
+            if (!validate()) {
+                Toast.makeText(BmiActivity.this, R.string.fields_errors, Toast.LENGTH_LONG).show();
+                return;
             }
+
+            String sHeight = editHeight.getText().toString();
+            String sWeight = editWeight.getText().toString();
+
+            double height = Double.parseDouble(sHeight);
+            double weight = Double.parseDouble(sWeight);
+
+            double result = calculateBMI(height, weight);
+            Log.d("Testing", String.valueOf(result));
+
+            int bmiResponseId = bmiResponse(result);
+
+            AlertDialog alertDialog = new AlertDialog.Builder(BmiActivity.this)
+                .setTitle(getString(R.string.bmi_response, result))
+                .setMessage(bmiResponseId)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+
+                })
+                .create();
+
+            alertDialog.show();
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+            inputMethodManager.hideSoftInputFromWindow(editWeight.getWindowToken(), 0);
+            inputMethodManager.hideSoftInputFromWindow(editHeight.getWindowToken(), 0);
         });
 
 
