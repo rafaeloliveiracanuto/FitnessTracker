@@ -16,4 +16,5 @@
     <string name="bmi_so_high_weight">Moderately obese</string>
     <string name="bmi_severely_high_weight">Severely obese</string>
     <string name="bmi_extreme_weight">Extremely obese</string>
+    <string name="bmi_response">BMI: %1$.2f</string>
 </resources>
